@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:ads="http://schemas.android.com/apk/lib/com.google.ads"
+                android:layout_width="fill_parent" android:layout_height="fill_parent">
+
+    <com.google.ads.AdView android:id="@+id/adView"
+                           android:layout_width="wrap_content" android:layout_height="wrap_content"
+                           android:layout_alignParentBottom="true"
+                           android:layout_centerHorizontal="true"
+                           ads:adUnitId="@string/conf_admob_banner_unitid"
+                           ads:adSize="BANNER"
+                           ads:testDevices="@string/conf_admob_banner_testdevices"
+                           ads:loadAdOnCreate="true"/>
+
+    <TextView android:id="@+id/center_detail_title"
+              android:layout_width="fill_parent" android:layout_height="wrap_content"
+              android:layout_alignParentTop="true"
+              android:paddingLeft="5dip" android:paddingRight="5dip" android:paddingTop="5dip"
+              android:textSize="22sp"
+              android:text="Title"/>
+
+    <TextView android:id="@+id/center_detail_coordinates"
+              android:layout_width="fill_parent" android:layout_height="wrap_content"
+              android:layout_below="@id/center_detail_title"
+              android:layout_marginTop="10dip"
+              android:paddingLeft="5dip" android:paddingRight="5dip"
+              android:textSize="16sp"
+              android:textStyle="bold"
+              android:text="Coordonnées"/>
+
+    <TextView android:id="@+id/center_detail_city_label"
+              android:layout_below="@id/center_detail_coordinates"
+              android:layout_width="wrap_content" android:layout_height="wrap_content"
+              android:paddingLeft="10dip"
+              android:textSize="15sp"
+              android:text="Ville : "/>
+
+    <TextView android:id="@+id/center_detail_city"
+              android:layout_width="fill_parent" android:layout_height="wrap_content"
+              android:layout_toRightOf="@id/center_detail_city_label"
+              android:layout_alignBaseline="@id/center_detail_city_label"
+              android:textSize="15sp"
+              android:text="City"/>
+
+    <TextView android:id="@+id/center_detail_phone_label"
+              android:layout_width="wrap_content" android:layout_height="wrap_content"
+              android:layout_below="@id/center_detail_city_label"
+              android:paddingLeft="10dip"
+              android:textSize="15sp"
+              android:text="Tél. : "/>
+
+    <TextView android:id="@+id/center_detail_phone"
+              android:layout_toRightOf="@id/center_detail_phone_label"
+              android:layout_alignBaseline="@id/center_detail_phone_label"
+              android:layout_width="fill_parent" android:layout_height="wrap_content"
+              android:textSize="15sp"
+              android:text="Numéro inconnu"/>
+
+    <TextView android:id="@+id/center_detail_description"
+              android:layout_width="fill_parent" android:layout_height="wrap_content"
+              android:layout_below="@id/center_detail_phone_label"
+              android:layout_marginTop="12dip"
+              android:paddingLeft="5dip" android:paddingRight="5dip"
+              android:textSize="16sp"
+              android:textStyle="bold"
+              android:text="Description"/>
+
+    <WebView android:id="@+id/center_detail_webview"
+             android:layout_below="@id/center_detail_description"
+             android:layout_above="@id/adView"
+             android:layout_width="fill_parent" android:layout_height="fill_parent"/>
+
+</RelativeLayout>

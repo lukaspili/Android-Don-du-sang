@@ -1,0 +1,17 @@
+apply plugin: 'java'
+apply plugin: 'application'
+
+mainClassName = 'DaoGenerator'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile 'de.greenrobot:greendao-generator:1.3.0'
+}
+
+task copyDeps(type: Copy) {
+    from configurations.runtime
+    into 'build/libs'
+}

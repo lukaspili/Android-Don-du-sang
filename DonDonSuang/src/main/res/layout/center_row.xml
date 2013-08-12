@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="fill_parent" android:layout_height="wrap_content"
+                android:paddingTop="10dip" android:paddingBottom="10dip"
+                android:paddingLeft="5dip" android:paddingRight="5dip">
+
+    <ImageView android:id="@+id/center_row_image"
+               android:layout_width="wrap_content" android:layout_height="wrap_content"
+               android:layout_alignParentRight="true"
+               android:layout_centerVertical="true"
+               android:src="@drawable/ic_menu_arrow_right2"/>
+
+    <TextView android:id="@+id/center_row_text"
+              android:layout_width="fill_parent" android:layout_height="wrap_content"
+              android:layout_toLeftOf="@id/center_row_image"
+              android:maxLines="2"
+              android:ellipsize="end"
+              android:textSize="18sp"
+              android:text="Row"/>
+
+    <TextView android:id="@+id/center_row_description"
+              android:layout_width="fill_parent" android:layout_height="wrap_content"
+              android:layout_below="@id/center_row_text"
+              android:layout_toLeftOf="@id/center_row_image"
+              android:textSize="14sp"
+              android:text="Date"/>
+</RelativeLayout>
