@@ -135,13 +135,6 @@ public class CentersFragment extends Fragment implements GooglePlayServicesClien
     }
 
     @Override
-    public void onPause() {
-
-
-        super.onPause();
-    }
-
-    @Override
     public void onStop() {
         stopGetCentersRequest();
 
@@ -152,13 +145,6 @@ public class CentersFragment extends Fragment implements GooglePlayServicesClien
         getActivity().unregisterReceiver(mNetworkBroadcastReceiver);
 
         super.onStop();
-    }
-
-    @Override
-    public void onDestroy() {
-
-
-        super.onDestroy();
     }
 
     @Override
