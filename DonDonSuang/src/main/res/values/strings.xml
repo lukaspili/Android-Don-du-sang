@@ -138,5 +138,6 @@
     <string name="location_from_address_task_canceled">Recherche de l\'adresse annulée.</string>
     <string name="menu_list">Liste</string>
     <string name="menu_map">Carte</string>
+    <string name="menu_reload">Recharger</string>
 
 </resources>

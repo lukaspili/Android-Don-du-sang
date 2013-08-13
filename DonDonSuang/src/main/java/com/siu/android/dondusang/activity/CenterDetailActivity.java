@@ -3,16 +3,16 @@ package com.siu.android.dondusang.activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.TextView;
 
-import com.actionbarsherlock.app.ActionBar;
-import com.actionbarsherlock.app.SherlockActivity;
-import com.actionbarsherlock.view.Menu;
-import com.actionbarsherlock.view.MenuInflater;
-import com.actionbarsherlock.view.MenuItem;
 import com.siu.android.dondusang.R;
 import com.siu.android.dondusang.model.Center;
 
@@ -21,7 +21,7 @@ import org.apache.commons.lang3.StringUtils;
 /**
  * @author Lukasz Piliszczuk <lukasz.pili AT gmail.com>
  */
-public class CenterDetailActivity extends SherlockActivity {
+public class CenterDetailActivity extends ActionBarActivity {
 
     public static final String EXTRA_CENTER = "extra_center";
 
@@ -66,7 +66,7 @@ public class CenterDetailActivity extends SherlockActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getSupportMenuInflater();
+        MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.center_detail_menu, menu);
         return true;
     }

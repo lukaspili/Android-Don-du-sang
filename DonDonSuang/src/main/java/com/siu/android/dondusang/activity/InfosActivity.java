@@ -5,19 +5,20 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.ActionBarActivity;
+import android.view.Menu;
+import android.view.MenuItem;
 
-import com.actionbarsherlock.app.ActionBar;
-import com.actionbarsherlock.app.SherlockFragmentActivity;
-import com.actionbarsherlock.view.Menu;
-import com.actionbarsherlock.view.MenuItem;
 import com.siu.android.dondusang.R;
 import com.siu.android.dondusang.activity.fragments.NewsTabFragment;
 import com.siu.android.dondusang.fragment.AptitudeFragment;
+import com.siu.android.dondusang.fragment.FragmentTabListener;
 
 /**
  * @author Lukasz Piliszczuk <lukasz.piliszczuk AT zenika.com>
  */
-public class InfosActivity extends SherlockFragmentActivity {
+public class InfosActivity extends ActionBarActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,7 +30,7 @@ public class InfosActivity extends SherlockFragmentActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getSupportMenuInflater().inflate(R.menu.infos_menu, menu);
+        getMenuInflater().inflate(R.menu.infos_menu, menu);
         return true;
     }
 
@@ -59,12 +60,12 @@ public class InfosActivity extends SherlockFragmentActivity {
 
         ActionBar.Tab tab = actionBar.newTab();
         tab.setText("Aptitude");
-        tab.setTabListener(new TabListener<AptitudeFragment>(this, "QuestionsTabFragment", AptitudeFragment.class));
+        tab.setTabListener(new FragmentTabListener<AptitudeFragment>(this, "QuestionsTabFragment", AptitudeFragment.class));
         actionBar.addTab(tab);
 
         tab = actionBar.newTab();
         tab.setText("Actualités");
-        tab.setTabListener(new TabListener<NewsTabFragment>(this, "NewsTabFragment", NewsTabFragment.class));
+        tab.setTabListener(new FragmentTabListener<NewsTabFragment>(this, "NewsTabFragment", NewsTabFragment.class));
         actionBar.addTab(tab);
     }
 

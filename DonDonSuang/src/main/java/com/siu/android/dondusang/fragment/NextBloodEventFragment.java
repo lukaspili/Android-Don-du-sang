@@ -1,11 +1,11 @@
 package com.siu.android.dondusang.fragment;
 
-import com.actionbarsherlock.app.SherlockFragment;
+import android.support.v4.app.Fragment;
 
 /**
  * Created by lukas on 8/12/13.
  */
-public class NextBloodEventFragment extends SherlockFragment {
+public class NextBloodEventFragment extends Fragment {
 
 
 }

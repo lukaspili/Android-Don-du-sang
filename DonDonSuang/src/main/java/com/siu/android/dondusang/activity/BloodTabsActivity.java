@@ -1,11 +1,10 @@
 package com.siu.android.dondusang.activity;
 
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.ActionBarActivity;
 
-import com.actionbarsherlock.app.ActionBar;
-import com.actionbarsherlock.app.SherlockFragment;
-import com.actionbarsherlock.app.SherlockFragmentActivity;
-import com.actionbarsherlock.view.Menu;
 import com.google.analytics.tracking.android.EasyTracker;
 import com.siu.android.dondusang.R;
 import com.siu.android.dondusang.fragment.CentersFragment;
@@ -14,7 +13,7 @@ import com.siu.android.dondusang.fragment.FragmentTabListener;
 /**
  * Created by lukas on 8/11/13.
  */
-public class BloodTabsActivity extends SherlockFragmentActivity {
+public class BloodTabsActivity extends ActionBarActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,7 +57,7 @@ public class BloodTabsActivity extends SherlockFragmentActivity {
         ActionBar.Tab tab = getSupportActionBar().newTab();
         tab.setText(title);
         tab.setIcon(getResources().getDrawable(icon));
-        tab.setTabListener(new FragmentTabListener<SherlockFragment>(this, title + " fragment", clazz));
+        tab.setTabListener(new FragmentTabListener<Fragment>(this, title + " fragment", clazz));
 
         getSupportActionBar().addTab(tab);
     }

@@ -4,8 +4,7 @@ import android.app.Activity;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentTransaction;
-
-import com.actionbarsherlock.app.ActionBar;
+import android.support.v7.app.ActionBar;
 
 /**
  * Created by lukas on 8/12/13.

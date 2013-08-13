@@ -2,13 +2,13 @@ package com.siu.android.dondusang.activity.fragments;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
-import com.actionbarsherlock.app.SherlockFragment;
 import com.siu.android.dondusang.R;
 import com.siu.android.dondusang.activity.NewsDetailActivity;
 import com.siu.android.dondusang.dao.model.News;
@@ -21,7 +21,7 @@ import java.util.List;
 /**
  * @author Lukasz Piliszczuk <lukasz.pili AT gmail.com>
  */
-public class NewsTabFragment extends SherlockFragment {
+public class NewsTabFragment extends Fragment {
 
     private ListView listView;
 
@@ -88,7 +88,7 @@ public class NewsTabFragment extends SherlockFragment {
     /* NewsLoadTask */
 
     private void startNewsLoadTask() {
-        getSherlockActivity().setSupportProgressBarIndeterminateVisibility(true);
+//        getSherlockActivity().setSupportProgressBarIndeterminateVisibility(true);
         newsLoadTask = new NewsLoadTask(this);
         newsLoadTask.execute();
     }
@@ -103,7 +103,7 @@ public class NewsTabFragment extends SherlockFragment {
     }
 
     public void onNewsLoadTaskFinish(List<News> newsListLoaded) {
-        getSherlockActivity().setSupportProgressBarIndeterminateVisibility(false);
+//        getActivity().setSupportProgressBarIndeterminateVisibility(false);
         newsLoadTask = null;
 
         if (null == newsListLoaded) {

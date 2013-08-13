@@ -4,18 +4,18 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.location.Location;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import com.actionbarsherlock.app.SherlockFragment;
-import com.actionbarsherlock.view.Menu;
-import com.actionbarsherlock.view.MenuInflater;
-import com.actionbarsherlock.view.MenuItem;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.google.android.gms.common.ConnectionResult;
@@ -45,6 +45,7 @@ import com.siu.android.dondusang.task.SimpleTask;
 import com.siu.android.dondusang.toast.NiceToast;
 import com.siu.android.dondusang.volley.CentersRequest;
 
+import java.util.AbstractMap;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -54,17 +55,16 @@ import java.util.Map;
 /**
  * Created by lukas on 8/12/13.
  */
-public class CentersFragment extends SherlockFragment implements GooglePlayServicesClient.ConnectionCallbacks, GooglePlayServicesClient.OnConnectionFailedListener {
+public class CentersFragment extends Fragment implements GooglePlayServicesClient.ConnectionCallbacks, GooglePlayServicesClient.OnConnectionFailedListener {
 
-    private static final int ZOOM_LIMIT = 6;
-    private static final int ZOOM_LOCATION = 6;
-    private static final int ZOOM_INITIAL = 6;
+    private static final float ZOOM_LOCATION = 11.5F;
+    private static final float ZOOM_INITIAL = 5.5F;
     private static final String CENTERS_REQUEST_TAG = "centers request";
 
-    private GoogleMap mMap;
     private LocationClient mLocationClient;
     private Location mCurrentLocation;
 
+    private GoogleMap mMap;
     private View mMapFrameView;
     private ListView mListView;
     private CenterAdapter mListAdapter;
@@ -76,7 +76,6 @@ public class CentersFragment extends SherlockFragment implements GooglePlayServi
     private Map<Marker, Center> mMarkerCenters;
     private Map.Entry<Marker, Center> mCurrentMarkerCenter;
     private List<Center> mCenters;
-    private Center mCurrentCenter;
 
     private boolean mPlayServicesInitialized;
 
@@ -175,12 +174,17 @@ public class CentersFragment extends SherlockFragment implements GooglePlayServi
                     mMapFrameView.setVisibility(View.GONE);
                     mListView.setVisibility(View.VISIBLE);
                     item.setTitle(R.string.menu_map);
+                    item.setIcon(R.drawable.map);
                 } else {
                     mListView.setVisibility(View.GONE);
                     mMapFrameView.setVisibility(View.VISIBLE);
                     item.setTitle(R.string.menu_list);
+                    item.setIcon(R.drawable.list);
                 }
                 return true;
+
+            case R.id.menu_reload:
+                startGetCentersRequest();
         }
 
         return super.onOptionsItemSelected(item);
@@ -224,7 +228,7 @@ public class CentersFragment extends SherlockFragment implements GooglePlayServi
         mMap.getUiSettings().setZoomControlsEnabled(true);
         mMap.getUiSettings().setMyLocationButtonEnabled(true);
 
-        mMap.setInfoWindowAdapter(new CenterInfoWindowAdatper(getActivity()));
+        mMap.setInfoWindowAdapter(new CenterInfoWindowAdatper(this));
 
         // initial position
         CameraPosition position = new CameraPosition.Builder()
@@ -246,30 +250,42 @@ public class CentersFragment extends SherlockFragment implements GooglePlayServi
                 }
 
                 // hide current station if exists and out of the screen
-                if (mCurrentCenter != null && !mMap.getProjection().getVisibleRegion().latLngBounds
-                        .contains(new LatLng(mCurrentCenter.getLatitude(), mCurrentCenter.getLongitude()))) {
-//                    hideCurrentCenter();
+                if (mCurrentMarkerCenter != null && !mMap.getProjection().getVisibleRegion().latLngBounds
+                        .contains(new LatLng(mCurrentMarkerCenter.getValue().getLatitude(), mCurrentMarkerCenter.getValue().getLongitude()))) {
+                    mCurrentMarkerCenter.getKey().hideInfoWindow();
+                    mCurrentMarkerCenter = null;
                 }
 
                 startGetCentersRequest();
             }
         });
 
-//        mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
-//            @Override
-//            public boolean onMarkerClick(Marker marker) {
-//                showStation(mMarkersStations.get(marker));
-//
-//                // fake info window in order to bring the marker to front
-//                marker.showInfoWindow();
-//                mCurrentMarker = marker;
-//
-//                return true;
-//            }
-//        });
+        mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
+            @Override
+            public boolean onMarkerClick(Marker marker) {
+                marker.showInfoWindow();
+                mCurrentMarkerCenter = new AbstractMap.SimpleEntry<Marker, Center>(marker, mMarkerCenters.get(marker));
+
+                return true;
+            }
+        });
+
+        mMap.setOnMyLocationButtonClickListener(new GoogleMap.OnMyLocationButtonClickListener() {
+            @Override
+            public boolean onMyLocationButtonClick() {
+                if (mLocationClient != null) {
+                    Location location = mLocationClient.getLastLocation();
+                    if (location != null) {
+                        animateCameraToLocalizedPosition(new LatLng(location.getLatitude(), location.getLongitude()));
+                    }
+                }
+
+                return true;
+            }
+        });
     }
 
-    private void animateCameraToPosition(LatLng latLng) {
+    private void animateCameraToLocalizedPosition(LatLng latLng) {
         mMap.animateCamera(CameraUpdateFactory.newCameraPosition(new CameraPosition.Builder()
                 .target(latLng)
                 .zoom(ZOOM_LOCATION)
@@ -292,7 +308,7 @@ public class CentersFragment extends SherlockFragment implements GooglePlayServi
             return;
         }
 
-        animateCameraToPosition(new LatLng(mCurrentLocation.getLatitude(), mCurrentLocation.getLongitude()));
+        animateCameraToLocalizedPosition(new LatLng(mCurrentLocation.getLatitude(), mCurrentLocation.getLongitude()));
     }
 
     @Override
@@ -339,6 +355,10 @@ public class CentersFragment extends SherlockFragment implements GooglePlayServi
     /* Centers */
 
     private void startGetCentersRequest() {
+        if (!mPlayServicesInitialized) {
+            return;
+        }
+
         // cancel previous requests
         stopGetCentersRequest();
 
@@ -434,5 +454,10 @@ public class CentersFragment extends SherlockFragment implements GooglePlayServi
                 .build();
 
         mMap.moveCamera(CameraUpdateFactory.newCameraPosition(position));
+    }
+
+
+    public Map<Marker, Center> getMarkerCenters() {
+        return mMarkerCenters;
     }
 }
