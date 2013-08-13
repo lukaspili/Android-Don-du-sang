@@ -5,10 +5,22 @@
               android:layout_width="match_parent"
               android:layout_height="match_parent">
 
-    <fragment
-            android:id="@+id/map"
+    <FrameLayout
+            android:id="@+id/map_frame"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+        <fragment
+                android:id="@+id/map"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                class="com.google.android.gms.maps.SupportMapFragment"/>
+    </FrameLayout>
+
+
+    <ListView
+            android:id="@+id/list"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            class="com.google.android.gms.maps.SupportMapFragment"/>
+            android:visibility="gone"/>
 
 </LinearLayout>

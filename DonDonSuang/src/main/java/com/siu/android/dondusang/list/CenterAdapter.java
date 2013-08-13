@@ -6,8 +6,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
+
 import com.siu.android.dondusang.R;
-import com.siu.android.dondusang.dao.model.Center;
+import com.siu.android.dondusang.model.Center;
 
 import java.util.List;
 

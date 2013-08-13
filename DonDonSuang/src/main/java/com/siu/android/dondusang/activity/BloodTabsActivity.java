@@ -5,6 +5,7 @@ import android.os.Bundle;
 import com.actionbarsherlock.app.ActionBar;
 import com.actionbarsherlock.app.SherlockFragment;
 import com.actionbarsherlock.app.SherlockFragmentActivity;
+import com.actionbarsherlock.view.Menu;
 import com.google.analytics.tracking.android.EasyTracker;
 import com.siu.android.dondusang.R;
 import com.siu.android.dondusang.fragment.CentersFragment;
@@ -50,7 +51,7 @@ public class BloodTabsActivity extends SherlockFragmentActivity {
     private void initActionBar() {
         getSupportActionBar().setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
 
-        addTab("Centres", 0, CentersFragment.class);
+        addTab("Centres", R.drawable.map, CentersFragment.class);
     }
 
     private void addTab(String title, int icon, Class clazz) {

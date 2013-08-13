@@ -136,5 +136,7 @@
     <string name="must_install_play_services">Vous devez installer les Google Play Services.
     </string>
     <string name="location_from_address_task_canceled">Recherche de l\'adresse annulée.</string>
+    <string name="menu_list">Liste</string>
+    <string name="menu_map">Carte</string>
 
 </resources>

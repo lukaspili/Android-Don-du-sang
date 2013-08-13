@@ -10,9 +10,9 @@ import com.android.volley.toolbox.HttpHeaderParser;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
-import com.siu.android.dondusang.dao.model.Center;
 import com.siu.android.dondusang.gson.CenterDeserializer;
 import com.siu.android.dondusang.gson.CentersListDeserializer;
+import com.siu.android.dondusang.model.Center;
 
 import java.lang.reflect.Type;
 import java.util.List;

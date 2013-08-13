@@ -1,12 +1,10 @@
 package com.siu.android.dondusang;
 
-import android.R;
 import android.content.Context;
-import android.location.Geocoder;
-import android.preference.PreferenceManager;
-import com.siu.android.dondusang.dao.DatabaseHelper;
 
-import java.util.Locale;
+import com.android.volley.RequestQueue;
+import com.android.volley.toolbox.Volley;
+import com.siu.android.dondusang.volley.OkHttpStack;
 
 /**
  * @author Lukasz Piliszczuk <lukasz.pili AT gmail.com>
@@ -14,6 +12,7 @@ import java.util.Locale;
 public class Application extends android.app.Application {
 
     private static Context sContext;
+    private static RequestQueue sRequestQueue;
 
     public void onCreate() {
         super.onCreate();
@@ -31,5 +30,13 @@ public class Application extends android.app.Application {
 
     public static Context getContext() {
         return sContext;
+    }
+
+    public static synchronized RequestQueue getRequestQueue() {
+        if (sRequestQueue == null) {
+            sRequestQueue = Volley.newRequestQueue(sContext, new OkHttpStack());
+        }
+
+        return sRequestQueue;
     }
 }

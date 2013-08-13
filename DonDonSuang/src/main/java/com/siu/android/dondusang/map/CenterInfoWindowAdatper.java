@@ -6,7 +6,7 @@ import android.view.View;
 
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.model.Marker;
-import com.siu.android.univelo.R;
+import com.siu.android.dondusang.R;
 
 /**
  * Created by lukas on 7/17/13.
@@ -21,7 +21,7 @@ public class CenterInfoWindowAdatper implements GoogleMap.InfoWindowAdapter {
 
     @Override
     public View getInfoWindow(Marker marker) {
-        View view = LayoutInflater.from(mContext).inflate(R.layout.info_window, null);
+        View view = LayoutInflater.from(mContext).inflate(R.layout.center_info_window, null);
         return view;
     }
 

@@ -14,7 +14,7 @@ import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuInflater;
 import com.actionbarsherlock.view.MenuItem;
 import com.siu.android.dondusang.R;
-import com.siu.android.dondusang.dao.model.Center;
+import com.siu.android.dondusang.model.Center;
 
 import org.apache.commons.lang3.StringUtils;
 

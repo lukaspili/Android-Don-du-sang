@@ -1,11 +1,9 @@
 package com.siu.android.dondusang.fragment;
 
-import android.app.SearchManager;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.location.Location;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,10 +12,12 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import com.android.volley.RequestQueue;
+import com.actionbarsherlock.app.SherlockFragment;
+import com.actionbarsherlock.view.Menu;
+import com.actionbarsherlock.view.MenuInflater;
+import com.actionbarsherlock.view.MenuItem;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.android.volley.toolbox.Volley;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesClient;
 import com.google.android.gms.common.GooglePlayServicesUtil;
@@ -32,22 +32,21 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.siu.android.dondusang.AppConstants;
+import com.siu.android.dondusang.Application;
 import com.siu.android.dondusang.R;
 import com.siu.android.dondusang.activity.CenterDetailActivity;
 import com.siu.android.dondusang.broadcast.NetworkBroadcastReceiver;
 import com.siu.android.dondusang.broadcast.NetworkBroadcastReceiverCallback;
-import com.siu.android.dondusang.dao.model.Center;
 import com.siu.android.dondusang.list.CenterAdapter;
 import com.siu.android.dondusang.map.CenterInfoWindowAdatper;
+import com.siu.android.dondusang.model.Center;
 import com.siu.android.dondusang.task.GetLocationByNameTask;
 import com.siu.android.dondusang.task.SimpleTask;
 import com.siu.android.dondusang.toast.NiceToast;
 import com.siu.android.dondusang.volley.CentersRequest;
-import com.siu.android.dondusang.volley.OkHttpStack;
-
-import org.apache.commons.lang3.StringUtils;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -55,7 +54,7 @@ import java.util.Map;
 /**
  * Created by lukas on 8/12/13.
  */
-public class CentersFragment extends Fragment implements GooglePlayServicesClient.ConnectionCallbacks, GooglePlayServicesClient.OnConnectionFailedListener {
+public class CentersFragment extends SherlockFragment implements GooglePlayServicesClient.ConnectionCallbacks, GooglePlayServicesClient.OnConnectionFailedListener {
 
     private static final int ZOOM_LIMIT = 6;
     private static final int ZOOM_LOCATION = 6;
@@ -66,10 +65,9 @@ public class CentersFragment extends Fragment implements GooglePlayServicesClien
     private LocationClient mLocationClient;
     private Location mCurrentLocation;
 
+    private View mMapFrameView;
     private ListView mListView;
     private CenterAdapter mListAdapter;
-
-    private RequestQueue mRequestQueue;
 
     private GetLocationByNameTask mGetLocationByNameTask;
 
@@ -87,8 +85,9 @@ public class CentersFragment extends Fragment implements GooglePlayServicesClien
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setRetainInstance(true);
+        setHasOptionsMenu(true);
 
-        mRequestQueue = Volley.newRequestQueue(getActivity(), new OkHttpStack());
+        mMarkerCenters = new HashMap<Marker, Center>();
         mCenters = new ArrayList<Center>();
         mPlayServicesInitialized = false;
 
@@ -103,6 +102,8 @@ public class CentersFragment extends Fragment implements GooglePlayServicesClien
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.centers_fragment, null);
+        mListView = (ListView) view.findViewById(R.id.list);
+        mMapFrameView = view.findViewById(R.id.map_frame);
         return view;
     }
 
@@ -113,6 +114,8 @@ public class CentersFragment extends Fragment implements GooglePlayServicesClien
         if (mLocationClient != null && !mLocationClient.isConnected()) {
             mLocationClient.connect();
         }
+
+        getActivity().registerReceiver(mNetworkBroadcastReceiver, new IntentFilter("android.net.conn.CONNECTIVITY_CHANGE"));
 
         if (mPlayServicesInitialized) {
             startGetCentersRequest();
@@ -130,26 +133,24 @@ public class CentersFragment extends Fragment implements GooglePlayServicesClien
                 NiceToast.makeText(getActivity(), R.string.must_install_play_services, Toast.LENGTH_LONG).show();
             }
         }
-
-        getActivity().registerReceiver(mNetworkBroadcastReceiver, new IntentFilter("android.net.conn.CONNECTIVITY_CHANGE"));
     }
 
     @Override
     public void onPause() {
-        getActivity().unregisterReceiver(mNetworkBroadcastReceiver);
+
 
         super.onPause();
     }
 
     @Override
     public void onStop() {
-        if (getActivity().isFinishing()) {
-            mRequestQueue.stop();
-        }
+        stopGetCentersRequest();
 
         if (mLocationClient != null) {
             mLocationClient.disconnect();
         }
+
+        getActivity().unregisterReceiver(mNetworkBroadcastReceiver);
 
         super.onStop();
     }
@@ -161,8 +162,31 @@ public class CentersFragment extends Fragment implements GooglePlayServicesClien
         super.onDestroy();
     }
 
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        inflater.inflate(R.menu.centers_fragment_menu, menu);
+    }
 
-//    @Override
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.menu_list:
+                if (mMapFrameView.getVisibility() == View.VISIBLE) {
+                    mMapFrameView.setVisibility(View.GONE);
+                    mListView.setVisibility(View.VISIBLE);
+                    item.setTitle(R.string.menu_map);
+                } else {
+                    mListView.setVisibility(View.GONE);
+                    mMapFrameView.setVisibility(View.VISIBLE);
+                    item.setTitle(R.string.menu_list);
+                }
+                return true;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
+    //    @Override
 //    public void onNewIntent(Intent intent) {
 //        getActivity().setIntent(intent);
 //
@@ -354,11 +378,19 @@ public class CentersFragment extends Fragment implements GooglePlayServicesClien
                         }
                     }
 
-                    BitmapDescriptor bitmapDescriptor = BitmapDescriptorFactory.fromResource(R.drawable.pin_blue);
+                    BitmapDescriptor blueBitmapDescriptor = BitmapDescriptorFactory.fromResource(R.drawable.pin_blue);
+                    BitmapDescriptor redBitmapDescriptor = BitmapDescriptorFactory.fromResource(R.drawable.pin_red);
                     for (Center center : centers) {
-                        mMarkerCenters.put(mMap.addMarker(new MarkerOptions()
-                                .position(new LatLng(center.getLatitude(), center.getLongitude()))
-                                .icon(bitmapDescriptor)), center);
+                        MarkerOptions markerOptions = new MarkerOptions()
+                                .position(new LatLng(center.getLatitude(), center.getLongitude()));
+
+                        if (center.isPermanent()) {
+                            markerOptions.icon(blueBitmapDescriptor);
+                        } else {
+                            markerOptions.icon(redBitmapDescriptor);
+                        }
+
+                        mMarkerCenters.put(mMap.addMarker(markerOptions), center);
                     }
                 }
             }
@@ -371,11 +403,11 @@ public class CentersFragment extends Fragment implements GooglePlayServicesClien
         );
 
         request.setTag(CENTERS_REQUEST_TAG);
-        mRequestQueue.add(request);
+        Application.getRequestQueue().add(request);
     }
 
     private void stopGetCentersRequest() {
-        mRequestQueue.cancelAll(CENTERS_REQUEST_TAG);
+        Application.getRequestQueue().cancelAll(CENTERS_REQUEST_TAG);
     }
 
 
