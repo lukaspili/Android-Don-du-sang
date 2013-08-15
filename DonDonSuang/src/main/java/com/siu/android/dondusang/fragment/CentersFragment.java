@@ -5,17 +5,19 @@ import android.content.IntentFilter;
 import android.location.Location;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.actionbarsherlock.app.SherlockFragment;
+import com.actionbarsherlock.view.Menu;
+import com.actionbarsherlock.view.MenuInflater;
+import com.actionbarsherlock.view.MenuItem;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.google.android.gms.common.ConnectionResult;
@@ -55,7 +57,7 @@ import java.util.Map;
 /**
  * Created by lukas on 8/12/13.
  */
-public class CentersFragment extends Fragment implements GooglePlayServicesClient.ConnectionCallbacks, GooglePlayServicesClient.OnConnectionFailedListener {
+public class CentersFragment extends SherlockFragment implements GooglePlayServicesClient.ConnectionCallbacks, GooglePlayServicesClient.OnConnectionFailedListener {
 
     private static final float ZOOM_LOCATION = 11.5F;
     private static final float ZOOM_INITIAL = 5.5F;
@@ -64,8 +66,9 @@ public class CentersFragment extends Fragment implements GooglePlayServicesClien
     private LocationClient mLocationClient;
     private Location mCurrentLocation;
 
-    private GoogleMap mMap;
     private View mMapFrameView;
+    private GoogleMap mMap;
+
     private ListView mListView;
     private CenterAdapter mListAdapter;
 
@@ -94,6 +97,10 @@ public class CentersFragment extends Fragment implements GooglePlayServicesClien
             @Override
             public void onNetworkConnectivityChange(boolean connected) {
                 Log.d(getClass().getName(), "network change connected = " + connected);
+
+                if (connected) {
+                    startGetCentersRequest();
+                }
             }
         });
     }
@@ -103,7 +110,25 @@ public class CentersFragment extends Fragment implements GooglePlayServicesClien
         View view = inflater.inflate(R.layout.centers_fragment, null);
         mListView = (ListView) view.findViewById(R.id.list);
         mMapFrameView = view.findViewById(R.id.map_frame);
+
+        Fragment fragment = getFragmentManager().findFragmentByTag("map fragment");
+        FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
+        if (fragment == null) {
+            fragment = SupportMapFragment.newInstance();
+            fragmentTransaction.add(R.id.map_frame, fragment, "map fragment");
+        } else {
+            fragmentTransaction.attach(fragment);
+        }
+        fragmentTransaction.commit();
+
         return view;
+    }
+
+    @Override
+    public void onActivityCreated(Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+
+        initList();
     }
 
     @Override
@@ -132,6 +157,19 @@ public class CentersFragment extends Fragment implements GooglePlayServicesClien
                 NiceToast.makeText(getActivity(), R.string.must_install_play_services, Toast.LENGTH_LONG).show();
             }
         }
+    }
+
+
+    @Override
+    public void onDestroyView() {
+        if (!getActivity().isFinishing()) {
+            SupportMapFragment fragment = (SupportMapFragment) getFragmentManager().findFragmentByTag("map fragment");
+            if (fragment != null) {
+                getFragmentManager().beginTransaction().detach(fragment).commit();
+            }
+        }
+
+        super.onDestroyView();
     }
 
     @Override
@@ -199,7 +237,6 @@ public class CentersFragment extends Fragment implements GooglePlayServicesClien
     private void initWithValidPlayServices() {
         initMap();
         initLocation();
-        initList();
 
         mPlayServicesInitialized = true;
         startGetCentersRequest();
@@ -209,7 +246,7 @@ public class CentersFragment extends Fragment implements GooglePlayServicesClien
     /* Map */
 
     private void initMap() {
-        mMap = ((SupportMapFragment) getFragmentManager().findFragmentById(R.id.map)).getMap();
+        mMap = ((SupportMapFragment) getFragmentManager().findFragmentByTag("map fragment")).getMap();
         mMap.setMyLocationEnabled(true);
         mMap.getUiSettings().setZoomControlsEnabled(true);
         mMap.getUiSettings().setMyLocationButtonEnabled(true);
@@ -399,11 +436,14 @@ public class CentersFragment extends Fragment implements GooglePlayServicesClien
                         mMarkerCenters.put(mMap.addMarker(markerOptions), center);
                     }
                 }
+
+                mListAdapter.notifyDataSetChanged();
+
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError volleyError) {
-
+                NiceToast.makeText(getActivity(), R.string.get_centers_request_error, Toast.LENGTH_SHORT).show();
             }
         }
         );

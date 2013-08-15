@@ -43,7 +43,11 @@ public class CommonDeserializer {
         }
 
         try {
-            return jsonElement.getAsString();
+            String value = jsonElement.getAsString();
+            if (value == null) {
+                return null;
+            }
+            return value.trim();
         } catch (Exception e) {
             return null;
         }

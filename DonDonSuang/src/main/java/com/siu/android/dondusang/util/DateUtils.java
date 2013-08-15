@@ -23,7 +23,7 @@ public class DateUtils {
 
     private static SimpleDateFormat getFullDateFormat() {
         if (null == fullDateFormat) {
-            fullDateFormat = new SimpleDateFormat("EEEEEEEE dd MMMMMM", Locale.getDefault());
+            fullDateFormat = new SimpleDateFormat("EEEE dd MMMM", Locale.getDefault());
         }
 
         return fullDateFormat;

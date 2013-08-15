@@ -8,16 +8,26 @@
 
     <string name="when_fragment_lastgiftdate_button">La date de votre dernier don du sang</string>
     <string name="when_fragment_lastgift_text">Dernier don :</string>
-    <string name="when_fragment_rules_text">Pour connaitre la date de votre prochain possible don, renseignez les informations suivantes :</string>
+    <string name="when_fragment_rules_text">Pour connaitre la date de votre prochain possible don,
+        renseignez les informations suivantes :
+    </string>
     <string name="when_fragment_youare_text">Vous êtes :</string>
     <string name="when_fragment_nextgift">Vous pouvez faire votre prochain don du sang le :</string>
     <string name="when_fragment_nextgift_date_unknown">Date inconnue</string>
     <string name="when_fragment_user_info_new">Renseigner mes informations</string>
     <string name="when_fragment_user_info_edit">Modifier mes informations</string>
-    <string name="when_fragment_user_info">Vous êtes %1$s et votre dernier don du sang remonte au %2$s. %3$s</string>
-    <string name="when_fragment_user_info_man">Pour les hommes l\'ecart entre deux dons de sang doit être de 3 mois minimum.</string>
-    <string name="when_fragment_user_info_woman">Pour les femmes l\'ecart entre deux dons de sang doit être de 5 mois minimum.</string>
-    <string name="when_fragment_user_info_rules">Veuillez renseigner vos informations afin de déterminer la date de votre prochain don possible.</string>
+    <string name="when_fragment_user_info">Vous êtes %1$s et votre dernier don du sang remonte au
+        %2$s. %3$s
+    </string>
+    <string name="when_fragment_user_info_man">Pour les hommes l\'ecart entre deux dons de sang doit
+        être de 3 mois minimum.
+    </string>
+    <string name="when_fragment_user_info_woman">Pour les femmes l\'ecart entre deux dons de sang
+        doit être de 5 mois minimum.
+    </string>
+    <string name="when_fragment_user_info_rules">Veuillez renseigner vos informations afin de
+        déterminer la date de votre prochain don possible.
+    </string>
 
     <string name="sexe_man">un homme</string>
     <string name="sexe_woman">une femme</string>
@@ -40,19 +50,25 @@
     <string name="search_label">Don du sang</string>
     <string name="search_hint">Ville</string>
 
-    <string name="map_error_getcenterresult">Impossible d\'afficher les centres don du sang.</string>
-    <string name="map_error_getcurrentlocation">Impossible de localiser votre position courante.</string>
+    <string name="map_error_getcenterresult">Impossible d\'afficher les centres don du sang.
+    </string>
+    <string name="map_error_getcurrentlocation">Impossible de localiser votre position courante.
+    </string>
     <string name="map_error_getlocation">Impossible de localiser "%1$s".</string>
 
 
     <string name="questions_tab_begin_rules">
-        Ce questionnaire vous permet de savoir rapidement si vous êtes en mesure de donner votre sang par rapport aux principales contre-indications.\n
-        En aucun cas, ce questionnaire ne peut se substituer à l\'entretien préalable au don de sang avec un médecin de l\'EFS qui reste la seule personne
+        Ce questionnaire vous permet de savoir rapidement si vous êtes en mesure de donner votre
+        sang par rapport aux principales contre-indications.\n
+        En aucun cas, ce questionnaire ne peut se substituer à l\'entretien préalable au don de sang
+        avec un médecin de l\'EFS qui reste la seule personne
         habilitée à juger de votre aptitude au don de sang.
     </string>
     <string name="questions_tab_begin_button">Commencer</string>
     <string name="questions_tab_begin_subtitle">Répondez à 10 questions</string>
-    <string name="questions_tab_success">Vous pouvez maintenant aller à la collecte la plus proche de chez vous.</string>
+    <string name="questions_tab_success">Vous pouvez maintenant aller à la collecte la plus proche
+        de chez vous.
+    </string>
     <string name="questions_tab_success_button">Chercher une collecte</string>
     <string name="questions_tab_subtitle">%1$s sur 10</string>
 
@@ -60,51 +76,72 @@
         <item>Pesez-vous moins de 50 kg</item>
         <item>Avez-vous déjà eu une transfusion de sang ?</item>
         <item>Avez-vous une anémie ou un manque de fer ?</item>
-        <item>Dans les 4 derniers mois, avez-vous été opéré avec hospitalisation de plus de 24 heures ou subi une endoscopie ?</item>
-        <item>Avez-vous, ou avez-vous eu dans les 2 dernières semaines, une infection (toux, diarrhée, infection urinaire...) ?</item>
+        <item>Dans les 4 derniers mois, avez-vous été opéré avec hospitalisation de plus de 24
+            heures ou subi une endoscopie ?
+        </item>
+        <item>Avez-vous, ou avez-vous eu dans les 2 dernières semaines, une infection (toux,
+            diarrhée, infection urinaire...) ?
+        </item>
         <item>Prenez-vous des antibiotiques ?</item>
-        <item>Avez-vous eu des soins de carie simples dans les 24 heures, ou un détartrage, un traitement de racine, une extraction dentaire dans les 7 jours ?</item>
+        <item>Avez-vous eu des soins de carie simples dans les 24 heures, ou un détartrage, un
+            traitement de racine, une extraction dentaire dans les 7 jours ?
+        </item>
         <item>Etes-vous revenu d\'un pays tropical depuis moins de 4 mois ?</item>
         <item>Etes-vous enceinte ou avez-vous accouché depuis moins de 6 mois ?</item>
-        <item>Avez-vous été dans une situation pouvant exposer aux virus de SIDA ou des hépatites dans les 4 derniers mois: relations sexuelles avec un partenaire à risques, prise de drogue par seringues ?</item>
+        <item>Avez-vous été dans une situation pouvant exposer aux virus de SIDA ou des hépatites
+            dans les 4 derniers mois: relations sexuelles avec un partenaire à risques, prise de
+            drogue par seringues ?
+        </item>
     </string-array>
 
     <string-array name="questions_failures">
         <item>
-            Si vous pesez moins de 50kg, vous ne pouvez donner votre sang. En effet le volume de sang prélevé, par rapport à votre corpulence serait trop important
+            Si vous pesez moins de 50kg, vous ne pouvez donner votre sang. En effet le volume de
+            sang prélevé, par rapport à votre corpulence serait trop important
             et pourrait avoir des conséquences sur votre santé (malaise, anémie).
         </item>
         <item>
-            Si vous avez été transfusé(e), vous ne pouvez malheureusement plus donner votre sang. Cette mesure est fondée sur le principe de précaution et non sur un
-            risque ou un agent aujourd\'hui identifié. Elle a été prise le 15 septembre 1997 par le ministère de la Santé.
+            Si vous avez été transfusé(e), vous ne pouvez malheureusement plus donner votre sang.
+            Cette mesure est fondée sur le principe de précaution et non sur un
+            risque ou un agent aujourd\'hui identifié. Elle a été prise le 15 septembre 1997 par le
+            ministère de la Santé.
         </item>
         <item>
-            Si vous avez une carence en fer, source d\'anémie, vous ne pouvez pas donner votre sang. Un donneur ne doit pas être affaibli par le prélèvement sanguin.
-            Pour cela l\'EFS teste avant le don l\'hémoglobine des nouveaux donneurs ou des donneurs qui n\'ont pas donné...
+            Si vous avez une carence en fer, source d\'anémie, vous ne pouvez pas donner votre sang.
+            Un donneur ne doit pas être affaibli par le prélèvement sanguin.
+            Pour cela l\'EFS teste avant le don l\'hémoglobine des nouveaux donneurs ou des donneurs
+            qui n\'ont pas donné...
         </item>
         <item>
-            Dans le cas d\'une durée d\'hospitalisation supérieure à 24h ou après une intervention chirurgicale, vous devez attendre 4 mois avant de pouvoir donner votre
+            Dans le cas d\'une durée d\'hospitalisation supérieure à 24h ou après une intervention
+            chirurgicale, vous devez attendre 4 mois avant de pouvoir donner votre
             sang à nouveau.
         </item>
         <item>
-            Si vous avez été malade, il vous faut attendre 15 jours après la disparition des symptômes pour pouvoir redonner votre sang.
+            Si vous avez été malade, il vous faut attendre 15 jours après la disparition des
+            symptômes pour pouvoir redonner votre sang.
         </item>
         <item>
-            Avant de pouvoir donner votre sang à nouveau, il vous faudra attendre 14 jours après la fin du traitement.
+            Avant de pouvoir donner votre sang à nouveau, il vous faudra attendre 14 jours après la
+            fin du traitement.
         </item>
         <item>
             Dans ce cas, il n\'est pas possible de donner tout de suite son sang.
-            Il faut respecter un délai d\'1 journée pour le traitement d\'une carie, et de 7 jours pour un détartrage.
+            Il faut respecter un délai d\'1 journée pour le traitement d\'une carie, et de 7 jours
+            pour un détartrage.
         </item>
         <item>
-            Il faut en général respecter un délai de 4 mois après le retour d\'un voyage dans un pays impaludé avant de pouvoir donner son sang.
+            Il faut en général respecter un délai de 4 mois après le retour d\'un voyage dans un
+            pays impaludé avant de pouvoir donner son sang.
             Toutefois, dans l\'intervalle, le don de plasma est possible.
         </item>
         <item>
-            Les femmes enceintes ne doivent pas donner leur sang durant 6 mois après l\'accouchement, pour éviter tout risque d\'anémie.
+            Les femmes enceintes ne doivent pas donner leur sang durant 6 mois après
+            l\'accouchement, pour éviter tout risque d\'anémie.
         </item>
         <item>
-            Lorsque vous avez un nouveau partenaire sexuel, il faut attendre un délai de 4 mois après le dernier rapport non protégé pour pouvoir donner votre sang.
+            Lorsque vous avez un nouveau partenaire sexuel, il faut attendre un délai de 4 mois
+            après le dernier rapport non protégé pour pouvoir donner votre sang.
         </item>
         <item></item>
     </string-array>
@@ -113,11 +150,12 @@
     <!-- about dialog -->
     <string name="about_dialog_title">A propos</string>
     <string name="about_dialog_content">
-        L\'application Don du Sang a été réalisée avec amour par Siu, agence de développement web et mobile (Android, iOS) ainsi que
+        L\'application Don du Sang a été réalisée avec amour par Siu, agence de développement web et
+        mobile (Android, iOS) ainsi que
         Marion Diné, à l\'origine de ce projet.\n\n
         N\'hésitez pas à nous contacter à
         <b>hello@siu-soon.com</b>
-        ou rendez nous visite sur <b>www.siu-soon.com</b>.\n\n
+        ou rendez nous visite sur<b>www.siu-soon.com</b>.\n\n
         Pour toute suggestion ou rapport de bug, envoyez un mail à
         <b>app@siu-soon.com</b>
         avec une description explicite, merci :-)\n\n
@@ -139,5 +177,12 @@
     <string name="menu_list">Liste</string>
     <string name="menu_map">Carte</string>
     <string name="menu_reload">Recharger</string>
+    <string name="get_centers_request_error">Impossible de charger les centres de donnation.
+    </string>
+    <string name="blood_tab_centers">Centres</string>
+    <string name="blood_tab_aptitude">Aptitude</string>
+    <string name="blood_tab_next_blood_event">Prochain don</string>
 
+    <string name="admob_banner_unit_id">ca-app-pub-1710818070970377/9401154257</string>
+    <string name="center_detail_coordinates">Coordonnées</string>
 </resources>

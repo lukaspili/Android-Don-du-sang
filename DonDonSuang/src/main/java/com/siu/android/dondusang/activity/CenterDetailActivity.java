@@ -3,25 +3,27 @@ package com.siu.android.dondusang.activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.v7.app.ActionBar;
-import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.actionbarsherlock.app.ActionBar;
+import com.actionbarsherlock.app.SherlockFragmentActivity;
+import com.actionbarsherlock.view.Menu;
+import com.actionbarsherlock.view.MenuItem;
 import com.siu.android.dondusang.R;
 import com.siu.android.dondusang.model.Center;
+import com.siu.android.dondusang.toast.NiceToast;
+import com.siu.android.dondusang.util.WebUtils;
 
 import org.apache.commons.lang3.StringUtils;
 
 /**
  * @author Lukasz Piliszczuk <lukasz.pili AT gmail.com>
  */
-public class CenterDetailActivity extends ActionBarActivity {
+public class CenterDetailActivity extends SherlockFragmentActivity {
 
     public static final String EXTRA_CENTER = "extra_center";
 
@@ -34,12 +36,12 @@ public class CenterDetailActivity extends ActionBarActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        onCreate(savedInstanceState);
+        super.onCreate(savedInstanceState);
         setContentView(R.layout.center_detail_activity);
 
         titleTextView = (TextView) findViewById(R.id.center_detail_title);
-        cityTextView = (TextView) findViewById(R.id.center_detail_city);
-        phoneTextView = (TextView) findViewById(R.id.center_detail_phone);
+        cityTextView = (TextView) findViewById(R.id.center_detail_city_text);
+        phoneTextView = (TextView) findViewById(R.id.center_detail_phone_text);
 
         webView = (WebView) findViewById(R.id.center_detail_webview);
         webView.setWebViewClient(new WebViewClient() {
@@ -66,8 +68,7 @@ public class CenterDetailActivity extends ActionBarActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.center_detail_menu, menu);
+        getSupportMenuInflater().inflate(R.menu.center_detail_menu, menu);
         return true;
     }
 
@@ -80,17 +81,17 @@ public class CenterDetailActivity extends ActionBarActivity {
 
             case R.id.menu_call:
                 if (StringUtils.isEmpty(center.getPhone())) {
-//                    new AppToast(this, "Le numéro du centre n\'est pas connnu");
+                    NiceToast.makeText(this, "Le numéro du centre n\'est pas connnu", Toast.LENGTH_LONG).show();
                     return true;
                 }
 
                 try {
-                    Intent callIntent = new Intent(Intent.ACTION_CALL);
+                    Intent callIntent = new Intent(Intent.ACTION_DIAL);
                     callIntent.setData(Uri.parse("tel:" + center.getPhone()));
                     startActivity(callIntent);
                 } catch (Exception e) {
                     Log.e(getClass().getName(), "Error during call : " + center.getPhone(), e);
-//                    new AppToast(this, "Impossible d'appeller le centre avec le numéro suivant : " + center.getPhone());
+                    NiceToast.makeText(this, "Impossible d'appeller le centre avec le numéro suivant : " + center.getPhone(), Toast.LENGTH_LONG).show();
                 }
                 break;
 
@@ -107,13 +108,17 @@ public class CenterDetailActivity extends ActionBarActivity {
     }
 
     private void initCenter() {
-//        titleTextView.setText(center.getTitle());
-//        cityTextView.setText(center.getCity());
-//
-//        if (StringUtils.isNotEmpty(center.getPhone())) {
-//            phoneTextView.setText(center.getPhone());
-//        }
-//
-//        WebUtils.loadToWeview(webView, center.getDescription());
+        titleTextView.setText(center.getTitle());
+        cityTextView.setText("Ville : " + center.getCity());
+
+        String phone = "Tél : ";
+        if (StringUtils.isNotEmpty(center.getPhone())) {
+            phone += center.getPhone();
+        } else {
+            phone += "Numéro inconnu";
+        }
+        phoneTextView.setText(phone);
+
+        WebUtils.loadToWeview(webView, center.getDescription());
     }
 }

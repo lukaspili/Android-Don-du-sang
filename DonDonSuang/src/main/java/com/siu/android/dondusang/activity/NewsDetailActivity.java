@@ -1,18 +1,18 @@
 package com.siu.android.dondusang.activity;
 
 import android.os.Bundle;
-import android.support.v7.app.ActionBarActivity;
-import android.view.MenuItem;
 import android.webkit.WebView;
 import android.widget.TextView;
 
+import com.actionbarsherlock.app.SherlockFragmentActivity;
+import com.actionbarsherlock.view.MenuItem;
 import com.siu.android.dondusang.R;
 import com.siu.android.dondusang.dao.model.News;
 
 /**
  * @author Lukasz Piliszczuk <lukasz.pili AT gmail.com>
  */
-public class NewsDetailActivity extends ActionBarActivity {
+public class NewsDetailActivity extends SherlockFragmentActivity {
 
     public static final String EXTRA_NEWS = "extra_news";
 

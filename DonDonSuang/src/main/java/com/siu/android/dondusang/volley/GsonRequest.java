@@ -55,7 +55,7 @@ public class GsonRequest<T> extends Request<T> {
     @Override
     protected Response<T> parseNetworkResponse(NetworkResponse response) {
         try {
-            String json = new String(response.data, HttpHeaderParser.parseCharset(response.headers));
+            String json = new String(response.data, "UTF-8");
             T result = (mClass != null) ? gson.fromJson(json, mClass) : (T) gson.fromJson(json, mType);
             return Response.success(result, HttpHeaderParser.parseCacheHeaders(response));
         } catch (Exception e) {

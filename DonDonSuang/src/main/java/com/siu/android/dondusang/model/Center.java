@@ -2,6 +2,8 @@ package com.siu.android.dondusang.model;
 
 import com.siu.android.dondusang.util.DateUtils;
 
+import org.apache.commons.lang3.StringUtils;
+
 import java.io.Serializable;
 import java.util.Date;
 
@@ -32,19 +34,19 @@ public class Center implements Serializable {
     }
 
     public String getTitle() {
-        if (isPermanent()) {
-            return region;
+        if(StringUtils.isBlank(city)) {
+            return "Ville inconnue";
         }
 
-        return "Centre mobile";
+        return city;
     }
 
     public String getSubtitle() {
         if (isPermanent()) {
-            return "Situé à " + city;
+            return region + " - Centre permanent";
         }
 
-        return "Le " + DateUtils.formatAsFull(date) + ", à " + city;
+        return DateUtils.formatAsFull(date) + " - Centre mobile";
     }
 
 

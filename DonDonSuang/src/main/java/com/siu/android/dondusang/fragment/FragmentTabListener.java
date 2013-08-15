@@ -1,33 +1,32 @@
 package com.siu.android.dondusang.fragment;
 
-import android.app.Activity;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v7.app.ActionBar;
+
+import com.actionbarsherlock.app.ActionBar;
+import com.actionbarsherlock.app.SherlockFragment;
+import com.actionbarsherlock.app.SherlockFragmentActivity;
 
 /**
  * Created by lukas on 8/12/13.
  */
-public class FragmentTabListener<T extends Fragment> implements ActionBar.TabListener {
+public class FragmentTabListener<T extends SherlockFragment> implements ActionBar.TabListener {
 
-    private final Activity activity;
+    private final SherlockFragmentActivity activity;
     private final String tag;
     private final Class<T> clazz;
 
     private Fragment fragment;
 
-    public FragmentTabListener(FragmentActivity activity, String tag, Class<T> clazz) {
+    public FragmentTabListener(SherlockFragmentActivity activity, String tag, Class<T> clazz) {
         this.activity = activity;
         this.tag = tag;
         this.clazz = clazz;
-
-        fragment = activity.getSupportFragmentManager().findFragmentByTag(tag);
     }
 
     @Override
     public void onTabSelected(ActionBar.Tab tab, FragmentTransaction ft) {
-        if (null == fragment) {
+        if (fragment == null) {
             fragment = Fragment.instantiate(activity, clazz.getName());
             ft.add(android.R.id.content, fragment, tag);
         } else {
@@ -37,7 +36,7 @@ public class FragmentTabListener<T extends Fragment> implements ActionBar.TabLis
 
     @Override
     public void onTabUnselected(ActionBar.Tab tab, FragmentTransaction ft) {
-        if (null != fragment) {
+        if (fragment != null) {
             ft.detach(fragment);
         }
     }

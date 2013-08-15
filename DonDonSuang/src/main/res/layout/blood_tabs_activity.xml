@@ -1,13 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:orientation="vertical"
+              xmlns:ads="http://schemas.android.com/apk/lib/com.google.ads"
               android:layout_width="match_parent"
-              android:layout_height="match_parent">
+              android:layout_height="match_parent"
+              android:orientation="vertical">
 
     <FrameLayout
             android:id="@android:id/content"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            />
+
+    <com.google.ads.AdView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            ads:adUnitId="@string/admob_banner_unit_id"
+            ads:adSize="SMART_BANNER"
+            ads:testDevices="TEST_EMULATOR"
+            ads:loadAdOnCreate="true"/>
 
 </LinearLayout>

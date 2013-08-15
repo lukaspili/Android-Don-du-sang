@@ -1,21 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:id="@+id/root"
               android:orientation="vertical"
               android:layout_width="match_parent"
-              android:layout_height="match_parent">
+              android:layout_height="match_parent"
+              android:paddingBottom="@dimen/adview_height">
 
     <FrameLayout
             android:id="@+id/map_frame"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
-        <fragment
-                android:id="@+id/map"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                class="com.google.android.gms.maps.SupportMapFragment"/>
-    </FrameLayout>
-
+            android:layout_height="match_parent"/>
 
     <ListView
             android:id="@+id/list"

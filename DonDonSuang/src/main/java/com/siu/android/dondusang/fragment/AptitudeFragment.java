@@ -1,7 +1,6 @@
 package com.siu.android.dondusang.fragment;
 
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,12 +8,13 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.actionbarsherlock.app.SherlockFragment;
 import com.siu.android.dondusang.R;
 
 /**
  * @author Lukasz Piliszczuk <lukasz.pili AT gmail.com>
  */
-public class AptitudeFragment extends Fragment {
+public class AptitudeFragment extends SherlockFragment {
 
     private TextView titleTextView;
     private TextView subTitleTextView;
@@ -41,7 +41,7 @@ public class AptitudeFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater layoutInflater, ViewGroup viewGroup, Bundle bundle) {
-        View view = layoutInflater.inflate(R.layout.questions_tab_fragment, viewGroup, false);
+        View view = layoutInflater.inflate(R.layout.aptitude_tab_fragment, viewGroup, false);
 
         titleTextView = (TextView) view.findViewById(R.id.questions_tab_title);
         subTitleTextView = (TextView) view.findViewById(R.id.questions_tab_subtitle);
