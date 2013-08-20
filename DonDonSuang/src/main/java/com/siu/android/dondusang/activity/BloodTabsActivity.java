@@ -3,10 +3,10 @@ package com.siu.android.dondusang.activity;
 
 import android.os.Bundle;
 
-
 import com.actionbarsherlock.app.ActionBar;
 import com.actionbarsherlock.app.SherlockFragment;
 import com.actionbarsherlock.app.SherlockFragmentActivity;
+import com.actionbarsherlock.view.Window;
 import com.google.analytics.tracking.android.EasyTracker;
 import com.siu.android.dondusang.R;
 import com.siu.android.dondusang.fragment.AptitudeFragment;
@@ -22,6 +22,7 @@ public class BloodTabsActivity extends SherlockFragmentActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
         setContentView(R.layout.blood_tabs_activity);
 
         initActionBar();

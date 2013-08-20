@@ -1,15 +1,53 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:orientation="vertical"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="10dp">
 
-    <TextView
-            android:id="@+id/next_blood_event_title"
+    <Button
+            android:id="@+id/next_blood_event_start_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="FOOBAR"/>
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="@dimen/adview_height"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:text="@string/start"/>
+
+    <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentTop="true"
+            android:layout_above="@id/next_blood_event_start_button">
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+            <TextView
+                    android:id="@+id/next_blood_event_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="14dp"
+                    android:text="@string/next_blood_event_title"
+                    android:textSize="@dimen/text_title"
+                    android:gravity="center"/>
+
+            <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/text_paragraph"
+                    android:text="@string/next_blood_event_intro"/>
+
+        </LinearLayout>
 
 
-</LinearLayout>
+    </ScrollView>
+
+
+</RelativeLayout>

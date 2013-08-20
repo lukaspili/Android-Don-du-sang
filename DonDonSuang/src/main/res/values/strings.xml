@@ -149,8 +149,7 @@
 
     <!-- about dialog -->
     <string name="about_dialog_title">A propos</string>
-    <string name="about_dialog_content">
-        L\'application Don du Sang a été réalisée avec amour par Siu, agence de développement web et
+    <string name="about_dialog_content">L\'application Don du Sang a été réalisée avec amour par Siu, agence de développement web et
         mobile (Android, iOS) ainsi que
         Marion Diné, à l\'origine de ce projet.\n\n
         N\'hésitez pas à nous contacter à
@@ -171,8 +170,7 @@
     <string name="age_more_70">Plus de 70 ans</string>
     <string name="sexe_male">Masculin</string>
     <string name="sexe_female">Feminin</string>
-    <string name="must_install_play_services">Vous devez installer les Google Play Services.
-    </string>
+    <string name="must_install_play_services">Vous devez installer les Google Play Services.</string>
     <string name="location_from_address_task_canceled">Recherche de l\'adresse annulée.</string>
     <string name="menu_list">Liste</string>
     <string name="menu_map">Carte</string>
@@ -185,4 +183,18 @@
 
     <string name="admob_banner_unit_id">ca-app-pub-1710818070970377/9401154257</string>
     <string name="center_detail_coordinates">Coordonnées</string>
+    <string name="yes">Oui</string>
+    <string name="no">Non</string>
+    <string name="next_blood_event_title">Plannifier votre prochain\ndon de sang</string>
+    <string name="next_blood_event_intro">Cet outil vous permet de connaître la date à partir de laquelle vous pourrez réaliser votre prochain don de sang total, de plasma ou de plaquettes. Dans son calcul, il ne prend pas en compte les contres-indications éventuelles ni les dons spécifiques (don d\'aphérèse combinée, don de moelle osseuse, etc). Les informations renseignées ici sont rigouresement confidentielles et ne sont jamais transmises à qui que ce soit. Rien ne sort de votre téléphone!</string>
+    <string name="start">Commencer</string>
+    <string name="next_blood_event_personal_infos">Vos informations</string>
+    <string name="next_blood_event_sexe">Sexe :</string>
+    <string name="next_blood_event_age">Age :</string>
+    <string name="next_blood_event_activity_title">Prochain don du sang</string>
+    <string name="next_blood_event_historic">Votre historique de donneur</string>
+    <string name="next_blood_event_full_blood">1. Sang total</string>
+    <string name="next_blood_event_historic_intro">Merci d\'indiquer par type de don, le nombre de dons effectués au cours des <strong>12 derniers mois</strong> et la date du dernier don.</string>
+    <string name="next_blood_event_number_events">Nombre de dons :</string>
+    <string name="next_blood_event_date_last_event">Date dernier don :</string>
 </resources>

@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+
+    <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:padding="10dp"
+                android:paddingTop="15dp">
+
+            <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="2dp"
+                    android:text="@string/next_blood_event_personal_infos"
+                    android:textAllCaps="true"/>
+
+            <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="@android:color/black"/>
+
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:orientation="horizontal">
+
+                <TextView
+                        android:layout_width="@dimen/next_blood_event_form_left_width_small"
+                        android:layout_height="wrap_content"
+                        android:text="@string/next_blood_event_sexe"
+                        android:textSize="17sp"
+                        android:layout_gravity="center_vertical"/>
+
+                <Spinner
+                        android:id="@+id/next_blood_event_sexe_spinner"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:prompt="@string/next_blood_event_sexe"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="15dp"
+                    android:orientation="horizontal">
+
+                <TextView
+                        android:layout_width="@dimen/next_blood_event_form_left_width_small"
+                        android:layout_height="wrap_content"
+                        android:text="@string/next_blood_event_age"
+                        android:textSize="17sp"
+                        android:layout_gravity="center_vertical"/>
+
+                <Spinner
+                        android:id="@+id/next_blood_event_age_spinner"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:prompt="@string/next_blood_event_sexe"/>
+            </LinearLayout>
+
+            <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="2dp"
+                    android:text="@string/next_blood_event_historic"
+                    android:textAllCaps="true"/>
+
+            <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="@android:color/black"/>
+
+            <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:textSize="14sp"
+                    android:text="@string/next_blood_event_historic_intro"/>
+
+            <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="2dp"
+                    android:text="@string/next_blood_event_full_blood"
+                    android:textColor="@color/next_blood_event_subcategory_color"
+                    android:textAllCaps="true"/>
+
+            <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginBottom="5dp"
+                    android:background="@color/next_blood_event_subcategory_color"/>
+
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:orientation="horizontal">
+
+                <TextView
+                        android:layout_width="@dimen/next_blood_event_form_left_width_large"
+                        android:layout_height="wrap_content"
+                        android:text="@string/next_blood_event_number_events"
+                        android:textSize="17sp"
+                        android:layout_gravity="center_vertical"/>
+
+                <Spinner
+                        android:id="@+id/next_blood_event_full_blood_number_events_spinner"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:prompt="@string/next_blood_event_sexe"/>
+            </LinearLayout>
+
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:orientation="horizontal">
+
+                <TextView
+                        android:layout_width="@dimen/next_blood_event_form_left_width_large"
+                        android:layout_height="wrap_content"
+                        android:text="@string/next_blood_event_date_last_event"
+                        android:textSize="17sp"
+                        android:layout_gravity="center_vertical"/>
+
+                <Spinner
+                        android:id="@+id/next_blood_event_full_blood_last_date_spinner"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:prompt="@string/next_blood_event_sexe"/>
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

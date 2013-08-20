@@ -389,9 +389,12 @@ public class CentersFragment extends SherlockFragment implements GooglePlayServi
                 mMap.getProjection().getVisibleRegion().latLngBounds.northeast.latitude, mMap.getProjection().getVisibleRegion().latLngBounds.northeast.longitude,
                 mMap.getProjection().getVisibleRegion().latLngBounds.southwest.latitude, mMap.getProjection().getVisibleRegion().latLngBounds.southwest.longitude);
 
+        getSherlockActivity().setSupportProgressBarIndeterminateVisibility(true);
         CentersRequest request = new CentersRequest(url, new Response.Listener<List<Center>>() {
             @Override
             public void onResponse(List<Center> centers) {
+                getSherlockActivity().setSupportProgressBarIndeterminateVisibility(false);
+
                 // remove from list in any case (re add all if new centers)
                 mCenters.clear();
 
@@ -453,6 +456,7 @@ public class CentersFragment extends SherlockFragment implements GooglePlayServi
     }
 
     private void stopGetCentersRequest() {
+        getSherlockActivity().setSupportProgressBarIndeterminateVisibility(false);
         Application.getRequestQueue().cancelAll(CENTERS_REQUEST_TAG);
     }
 

@@ -3,6 +3,7 @@
 ## TODO
 
 - loading task progress
+- next blood strong tag no show
 - search
 - ads
 - isfinishing rotation?
