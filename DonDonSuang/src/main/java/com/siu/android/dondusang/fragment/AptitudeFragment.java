@@ -41,7 +41,7 @@ public class AptitudeFragment extends SherlockFragment {
 
     @Override
     public View onCreateView(LayoutInflater layoutInflater, ViewGroup viewGroup, Bundle bundle) {
-        View view = layoutInflater.inflate(R.layout.aptitude_tab_fragment, viewGroup, false);
+        View view = layoutInflater.inflate(R.layout.aptitude_fragment, viewGroup, false);
 
         titleTextView = (TextView) view.findViewById(R.id.questions_tab_title);
         subTitleTextView = (TextView) view.findViewById(R.id.questions_tab_subtitle);

@@ -194,7 +194,75 @@
     <string name="next_blood_event_activity_title">Prochain don du sang</string>
     <string name="next_blood_event_historic">Votre historique de donneur</string>
     <string name="next_blood_event_full_blood">1. Sang total</string>
+    <string name="next_blood_event_plasma">2. Plasma</string>
+    <string name="next_blood_event_platelets">3. Plaquettes</string>
     <string name="next_blood_event_historic_intro">Merci d\'indiquer par type de don, le nombre de dons effectués au cours des <strong>12 derniers mois</strong> et la date du dernier don.</string>
     <string name="next_blood_event_number_events">Nombre de dons :</string>
     <string name="next_blood_event_date_last_event">Date dernier don :</string>
+    <string name="next_blood_event_calculate">Calculer la date du prochain don</string>
+
+    <string-array name="next_blood_event_sexe">
+        <item>Homme</item>
+        <item>Femme</item>
+    </string-array>
+
+    <string-array name="next_blood_event_age">
+        <item>Moins de 18 ans</item>
+        <item>Entre 18 et 65 ans</item>
+        <item>Entre 65 et 70 ans</item>
+        <item>Plus de 70 ans</item>
+    </string-array>
+
+    <string-array name="next_blood_event_number_events_full_blood">
+        <item>Pas de don</item>
+        <item>1 don</item>
+        <item>2 dons</item>
+        <item>3 dons</item>
+        <item>4 dons</item>
+        <item>5 dons</item>
+        <item>6 dons</item>
+    </string-array>
+
+    <string-array name="next_blood_event_number_events_plasma">
+        <item>Pas de don</item>
+        <item>1 don</item>
+        <item>2 dons</item>
+        <item>3 dons</item>
+        <item>4 dons</item>
+        <item>5 dons</item>
+        <item>6 dons</item>
+        <item>7 dons</item>
+        <item>8 dons</item>
+        <item>9 dons</item>
+        <item>10 dons</item>
+        <item>11 dons</item>
+        <item>12 dons</item>
+        <item>13 dons</item>
+        <item>14 dons</item>
+        <item>15 dons</item>
+        <item>16 dons</item>
+        <item>17 dons</item>
+        <item>18 dons</item>
+        <item>19 dons</item>
+        <item>20 dons</item>
+        <item>21 dons</item>
+        <item>22 dons</item>
+        <item>23 dons</item>
+    </string-array>
+
+    <string-array name="next_blood_event_number_events_platelets">
+        <item>Pas de don</item>
+        <item>1 don</item>
+        <item>2 dons</item>
+        <item>3 dons</item>
+        <item>4 dons</item>
+        <item>5 dons</item>
+        <item>6 dons</item>
+        <item>7 dons</item>
+        <item>8 dons</item>
+        <item>9 dons</item>
+        <item>10 dons</item>
+        <item>11 dons</item>
+        <item>12 dons</item>
+    </string-array>
 </resources>

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:padding="8dip">
@@ -48,22 +49,22 @@
                 android:layout_height="fill_parent"
                 android:orientation="vertical">
 
-            <TextView
+            <com.siu.android.dondusang.view.roboto.RobotoTextView
                     android:id="@+id/questions_tab_title"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:textSize="25sp"
-                    android:text="Question"/>
+                    app:typeface="roboto_bold"/>
 
-            <TextView
+            <com.siu.android.dondusang.view.roboto.RobotoTextView
                     android:id="@+id/questions_tab_subtitle"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="25dip"
                     android:gravity="center"
                     android:textSize="20sp"
-                    android:text="1 sur 9"/>
+                    app:typeface="roboto_light"/>
 
             <ImageView
                     android:id="@+id/questions_tab_image"
@@ -75,7 +76,7 @@
                     android:layout_marginBottom="25dip"
                     android:visibility="gone"/>
 
-            <TextView
+            <com.siu.android.dondusang.view.roboto.RobotoTextView
                     android:id="@+id/questions_tab_content"
                     android:layout_width="fill_parent"
                     android:layout_height="fill_parent"
@@ -84,7 +85,7 @@
                     android:paddingRight="8dip"
                     android:gravity="center"
                     android:textSize="19sp"
-                    android:text="The question foobar"/>
+                    app:typeface="roboto_regular"/>
         </LinearLayout>
     </ScrollView>
 </RelativeLayout>

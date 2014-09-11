@@ -6,4 +6,5 @@
     <dimen name="adview_height">50dp</dimen>
     <dimen name="next_blood_event_form_left_width_small">100dp</dimen>
     <dimen name="next_blood_event_form_left_width_large">150dp</dimen>
+    <dimen name="next_blood_event_form_label_font_size">15sp</dimen>
 </resources>

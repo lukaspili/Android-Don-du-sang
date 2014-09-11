@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
               android:orientation="vertical"
               android:layout_width="match_parent"
               android:layout_height="match_parent">
@@ -39,15 +40,14 @@
                         android:layout_width="@dimen/next_blood_event_form_left_width_small"
                         android:layout_height="wrap_content"
                         android:text="@string/next_blood_event_sexe"
-                        android:textSize="17sp"
+                        android:textSize="@dimen/next_blood_event_form_label_font_size"
                         android:layout_gravity="center_vertical"/>
 
                 <Spinner
                         android:id="@+id/next_blood_event_sexe_spinner"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:prompt="@string/next_blood_event_sexe"/>
+                        android:layout_weight="1"/>
 
             </LinearLayout>
 
@@ -61,15 +61,14 @@
                         android:layout_width="@dimen/next_blood_event_form_left_width_small"
                         android:layout_height="wrap_content"
                         android:text="@string/next_blood_event_age"
-                        android:textSize="17sp"
+                        android:textSize="@dimen/next_blood_event_form_label_font_size"
                         android:layout_gravity="center_vertical"/>
 
                 <Spinner
                         android:id="@+id/next_blood_event_age_spinner"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:prompt="@string/next_blood_event_sexe"/>
+                        android:layout_weight="1"/>
             </LinearLayout>
 
             <TextView
@@ -92,61 +91,34 @@
                     android:textSize="14sp"
                     android:text="@string/next_blood_event_historic_intro"/>
 
-            <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="2dp"
-                    android:text="@string/next_blood_event_full_blood"
-                    android:textColor="@color/next_blood_event_subcategory_color"
-                    android:textAllCaps="true"/>
-
-            <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_marginBottom="5dp"
-                    android:background="@color/next_blood_event_subcategory_color"/>
-
-            <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="5dp"
-                    android:orientation="horizontal">
-
-                <TextView
-                        android:layout_width="@dimen/next_blood_event_form_left_width_large"
-                        android:layout_height="wrap_content"
-                        android:text="@string/next_blood_event_number_events"
-                        android:textSize="17sp"
-                        android:layout_gravity="center_vertical"/>
-
-                <Spinner
-                        android:id="@+id/next_blood_event_full_blood_number_events_spinner"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:prompt="@string/next_blood_event_sexe"/>
-            </LinearLayout>
-
-            <LinearLayout
+            <com.siu.android.dondusang.view.NextBloodEventHistoricElementView
+                    android:id="@+id/next_blood_event_historic_full_blood_view"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="10dp"
-                    android:orientation="horizontal">
+                    />
 
-                <TextView
-                        android:layout_width="@dimen/next_blood_event_form_left_width_large"
-                        android:layout_height="wrap_content"
-                        android:text="@string/next_blood_event_date_last_event"
-                        android:textSize="17sp"
-                        android:layout_gravity="center_vertical"/>
+            <com.siu.android.dondusang.view.NextBloodEventHistoricElementView
+                    android:id="@+id/next_blood_event_historic_plasma_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    />
 
-                <Spinner
-                        android:id="@+id/next_blood_event_full_blood_last_date_spinner"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:prompt="@string/next_blood_event_sexe"/>
-            </LinearLayout>
+            <com.siu.android.dondusang.view.NextBloodEventHistoricElementView
+                    android:id="@+id/next_blood_event_historic_platelets_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="15dp"
+                    />
+
+            <Button
+                    android:id="@+id/next_blood_event_calculate_button"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/next_blood_event_calculate"/>
+
+
         </LinearLayout>
     </ScrollView>
 </LinearLayout>
